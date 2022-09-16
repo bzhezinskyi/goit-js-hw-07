@@ -25,7 +25,8 @@ const el = galleryItems.map(el => {
 gallery.append(...el);
 
 const galleryLinks = document.querySelectorAll('.gallery__link');
-galleryLink(document.querySelectorAll('.gallery__link'));
+
+galleryLink(galleryLinks);
 
 function galleryLink(object) {
   for (const el of object) {
@@ -35,29 +36,14 @@ function galleryLink(object) {
   }
 }
 
-// gallery.addEventListener('click', onGalleryLibkClick);
-// const galleryLink = document.querySelector('.gallery__link');
-// console.log('~ galleryLink', galleryLink);
+gallery.addEventListener('click', onGalleryImage);
 
-// function onGalleryLibkClick() {
-//   galleryLink.map(el => {
-//     console.log(el);
-//     el.addEventListener('click', e => {
-//       e.preventDefault();
-//     });
-//   });
-// }
+function onGalleryImage() {
+  console.log(event.target);
 
-// galleryLink.addEventListener('click', e => {
-//   e.preventDefault();
-// });
+  const instance = basicLightbox.create(`
+    <img src="${event.target.dataset.sourse}" width="800" height="600">
+`);
 
-// gallery.addEventListener('click', selectImage);
-
-// function selectImage(e) {
-//   if (e.target.nodeName !== 'IMG') {
-//     return;
-//   }
-//   const selectedImage = e.target.dataset.url;
-//   console.log('~ selectedImage', selectedImage);
-// }
+  instance.show();
+}
